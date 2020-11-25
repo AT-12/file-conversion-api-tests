@@ -11,22 +11,22 @@ import java.util.Properties;
 public final class PropertiesReader {
 
     /**
-     * PropertiesReader class.
+     * FileReader attribute.
      */
     private static FileReader reader = null;
 
     /**
-     * PropertiesReader class.
+     * Properties attribute.
      */
     private static Properties property = null;
 
     /**
-     * PropertiesReader class.
+     * path from the file.properties.
      */
     private static final String PATH = "gradle.properties";
 
     /**
-     * PropertiesReader class.
+     * PropertiesReader attribute.
      */
     private static PropertiesReader singleInstance = null;
     private PropertiesReader() {
@@ -34,7 +34,7 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
+     * get instance or create a new one.
      * @return PropertiesReader instance.
      */
     public static PropertiesReader getInstance() throws IOException {
@@ -47,14 +47,14 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
+     * instance the reader class.
      */
     private static void setReader() throws FileNotFoundException {
         reader = new FileReader(PATH);
     }
 
     /**
-     * Spin the words with more letters than the limit.
+     * instance the properties class.
      */
     private static void setPropertiesReader() throws IOException {
         property = new Properties();
@@ -62,15 +62,15 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
+     * instance the PropertiesReader class.
      */
     private static void initializeClass() {
         singleInstance = new PropertiesReader();
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the BaseUrl from the file.properties.
+     * @return base url.
      */
     public static String getBaseUrl() {
         String baseUrl = property.getProperty("baseUrl");
@@ -78,8 +78,8 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the User from the file.properties.
+     * @return User value.
      */
     public static String getUser() {
         String user = property.getProperty("user");
@@ -87,8 +87,8 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the password from the file.properties.
+     * @return Password value.
      */
     public static String getPassword() {
         String password = property.getProperty("password");
@@ -96,8 +96,8 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the audioTemplatesPath from the file.properties.
+     * @return AudioTemplatesPath value.
      */
     public static String getAudioTemplatesPath() {
         String audioTemplatesPath = property.getProperty("audioTemplatesPath");
@@ -105,8 +105,8 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the videoTemplatesPath from the file.properties.
+     * @return videoTemplatesPath value.
      */
     public static String getVideoTemplatesPath() {
         String videoTemplatesPath = property.getProperty("videoTemplatesPath");
@@ -114,8 +114,8 @@ public final class PropertiesReader {
     }
 
     /**
-     * Spin the words with more letters than the limit.
-     * @return PropertiesReader instance.
+     * get the imageTemplatesPath from the file.properties.
+     * @return imageTemplatesPath value.
      */
     public static String getImageTemplatesPath() {
         String imageTemplatesPath = property.getProperty("imageTemplatesPath");

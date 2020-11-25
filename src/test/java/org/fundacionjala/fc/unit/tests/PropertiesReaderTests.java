@@ -5,14 +5,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
-
 /**
- * Defines unit tests for Dummy Util Class.
+ * Defines unit tests for PropertiesReader Class.
  */
 public class PropertiesReaderTests {
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get User value from gradle.properties.
      */
     @Test
     public void getUserTest() throws IOException {
@@ -23,7 +22,7 @@ public class PropertiesReaderTests {
     }
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get baseUrl value from gradle.properties.
      */
     @Test
     public void getBaseUrlTest() throws IOException {
@@ -34,7 +33,7 @@ public class PropertiesReaderTests {
     }
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get password value from gradle.properties.
      */
     @Test
     public void getPasswordTest() throws IOException {
@@ -45,7 +44,7 @@ public class PropertiesReaderTests {
     }
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get audioTemplatesPathTest value from gradle.properties.
      */
     @Test
     public void getAudioTemplatesPathTest() throws IOException {
@@ -56,7 +55,7 @@ public class PropertiesReaderTests {
     }
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get VideoTemplatesPathTest value from gradle.properties.
      */
     @Test
     public void getVideoTemplatesPathTest() throws IOException {
@@ -67,7 +66,7 @@ public class PropertiesReaderTests {
     }
 
     /**
-     * Test get value from Dummy Util class.
+     * Test get ImageTemplatesPathTest value from gradle.properties.
      */
     @Test
     public void getImageTemplatesPathTest() throws IOException {
