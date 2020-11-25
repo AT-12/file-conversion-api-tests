@@ -9,7 +9,7 @@ Feature: Extract Metadata
   @functional
   Scenario: Verify that is possible to extract metadata from an file with "exportFormat" field as TXT
     When I send a POST request to "/extractMetadata" with the following form data
-      | file         | "template/audio/demo.mp3"        |
+      | file         | @"template/audio/demo.mp3"        |
       | md5          | e1b3fab24c8af81c1aa13dbbb4e44ff0 |
       | exportFormat | t                                |
       | fileName     | testExtractMetaData              |
@@ -22,7 +22,7 @@ Feature: Extract Metadata
   @functional
   Scenario: Verify that is possible to extract metadata from an file with "exportFormat" field as CSV
     When I send a POST request to "/extractMetadata" with the following form data
-      | file         | "template/audio/demo.mp3"        |
+      | file         | @"template/audio/demo.mp3"        |
       | md5          | e1b3fab24c8af81c1aa13dbbb4e44ff0 |
       | exportFormat | T                                |
       | fileName     | testExtractMetaData              |
@@ -35,7 +35,7 @@ Feature: Extract Metadata
   @functional
   Scenario: Verify that is possible to extract metadata from an file with "exportFormat" field as JSON
     When I send a POST request to "/extractMetadata" with the following form data
-      | file         | "template/audio/demo.mp3"        |
+      | file         | @"template/audio/demo.mp3"        |
       | md5          | e1b3fab24c8af81c1aa13dbbb4e44ff0 |
       | exportFormat | j                                |
       | fileName     | testExtractMetaData              |
