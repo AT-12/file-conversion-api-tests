@@ -29,8 +29,8 @@ Feature: Extract text from image
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status  | 400                      |
-      | error   | "Error invalid language" |
+      | status  | 400                    |
+      | error   | Error invalid language |
 
   @negative
   Scenario: Verify that is not possible to extract text with an invalid md5
@@ -42,8 +42,8 @@ Feature: Extract text from image
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status  | 400                 |
-      | error   | "Failed in the md5" |
+      | status  | 400               |
+      | error   | Failed in the md5 |
 
   @negative
   Scenario: Verify that is not possible to extract text with an empty language
@@ -55,8 +55,8 @@ Feature: Extract text from image
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                     |
-      | error  | "failed Language empty" |
+      | status | 400                   |
+      | error  | failed Language empty |
 
   @negative
   Scenario: Verify that is not possible to extract text with an empty exportFormat
@@ -68,13 +68,13 @@ Feature: Extract text from image
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                   |
-      | error  | "Failed format empty" |
+      | status | 400                 |
+      | error  | Failed format empty |
 
   @negative
   Scenario: Verify that is not possible to extract text without configuration parameters
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                      |
-      | error  | "Failed form data empty" |
+      | status | 400                    |
+      | error  | Failed form data empty |
