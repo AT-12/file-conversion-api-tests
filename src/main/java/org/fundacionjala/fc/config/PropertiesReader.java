@@ -1,5 +1,8 @@
 package org.fundacionjala.fc.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.mozilla.javascript.tools.shell.Environment;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,21 +13,23 @@ import java.util.Properties;
  */
 public final class PropertiesReader {
 
+    private static final String PATH = "gradle.properties";
+    private static final Logger LOGGER = LogManager.getLogger(Environment.class);
+    private static PropertiesReader singleInstance;
     private FileReader reader;
     private Properties property;
-    private static final String PATH = "gradle.properties";
-    private static PropertiesReader singleInstance;
 
     private PropertiesReader() {
         try {
             reader = new FileReader(PATH);
             property = new Properties();
             property.load(reader);
-
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Error when reading file");
+            LOGGER.error(e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error getting properties");
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -51,8 +56,8 @@ public final class PropertiesReader {
      * get the User from the file.properties.
      * @return User value.
      */
-    public String getUser() {
-        return property.getProperty("user");
+    public String getUsername() {
+        return property.getProperty("username");
     }
 
     /**
@@ -86,5 +91,4 @@ public final class PropertiesReader {
     public String getImageTemplatesPath() {
         return property.getProperty("imageTemplatesPath");
     }
-
 }

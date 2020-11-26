@@ -16,7 +16,7 @@ public class PropertiesReaderTests {
     @Test
     public void getUserTest() throws IOException {
         PropertiesReader reader = PropertiesReader.getInstance();
-        String actual = reader.getUser();
+        String actual = reader.getUsername();
         String expected = "";
         Assert.assertEquals(actual, expected);
     }
@@ -75,5 +75,4 @@ public class PropertiesReaderTests {
         String expected = "";
         Assert.assertEquals(actual, expected);
     }
-
 }
