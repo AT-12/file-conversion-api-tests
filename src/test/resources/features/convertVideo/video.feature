@@ -5,8 +5,8 @@ Feature: Video Controller
 
   Background: Sets authentication
     Given I set valid authentication headers
-
-  Scenario: Verify that "/convertVideo" endpoint can perform "POST" request
+  @functional
+  Scenario: Verify that "/convertVideo" can perform "POST" request converting into MP4
     When I send a POST request to "/convertVideo" with the following form data
       | file              | @"template/video/demo.mp4"       |
       | md5               | 16b258600183d1d5dc0631c82de13000 |
@@ -22,7 +22,8 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status  | 200 |
 
-  Scenario: Verify that "/convertVideo" endpoint can perform "POST" request
+  @functional
+  Scenario: Verify that "/convertVideo" can perform "POST" request converting into MOV
     When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to MOV
       | file              | @"template/video/demo.mp4"       |
       | md5               | 16b258600183d1d5dc0631c82de13000 |
@@ -38,8 +39,8 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status  | 200 |
 
-
-  Scenario: Verify that "/convertVideo" endpoint can perform "POST" request
+  @functional
+  Scenario: Verify that "/convertVideo"  can perform "POST" request converting into GIF
     When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to GIF
       | file              | @"template/video/demo.mp4"       |
       | md5               | 16b258600183d1d5dc0631c82de13000 |
@@ -57,8 +58,8 @@ Feature: Video Controller
     And I validate that the response body should match with "video/videoSchema.json" JSON schema
     And I validate that the response contain the following values
       | status  | 200 |
-
-  Scenario: Verify that "/convertVideo" endpoint return error when I send Invalid information
+  @negative
+  Scenario: Verify that "/convertVideo" return an error when I send Invalid information in the codec
     When I send a POST request to "/convertVideo" with the following form data
     When I set the following form data
       | file              | @"template/video/demo.mp4"       |
@@ -69,15 +70,15 @@ Feature: Video Controller
       | codec             | 47859                            |
       | extractThumbnail  | true                             |
       | extractMetadata   | true                             |
-    Then I validate the response has the "400" state code
+    Then I validate the response has the "400" status code
     And I validate that the response body should match with "video/videoErrorSchema.json" JSON schema
     And I validate that the response contain the following values
       | status  | 400             |
       | error   | "Invalid codec" |
-
-  Scenario: Verify that "/convertVideo" endpoint return error when I send Invalid information
+  @negative
+  Scenario: Verify that "/convertVideo" return an error when I send empty spaces
     When I send a POST request to "/convertVideo" with the empty form data
-    Then I validate the response has the "400" state code
+    Then I validate the response has the "400" status code
     And I validate that the response body should match with "video/videoErrorSchema.json" JSON schema
     And I validate that the response contain the following values
       | status | 400           |
