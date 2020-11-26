@@ -56,8 +56,8 @@ Feature: Extract Metadata
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response container the following values
-      | status | 400                     |
-      | error  | "Invalid export format" |
+      | status | 400                   |
+      | error  | Invalid export format |
 
   @negative
   Scenario: Verify that is not possible to extract metadata without configuration parameters
@@ -65,5 +65,5 @@ Feature: Extract Metadata
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response container the following values
-      | status | 400                   |
-      | error  | "Failed format empty" |
+      | status | 400                 |
+      | error  | Failed format empty |
