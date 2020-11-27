@@ -72,8 +72,8 @@ Feature: Video Controller
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400             |
-      | error  | "Invalid codec" |
+      | status | 400           |
+      | error  | Invalid codec |
 
   @negative
   Scenario: Verify that is not possible to convert a video without configuration parameters.
@@ -81,8 +81,8 @@ Feature: Video Controller
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400           |
-      | error  | "Bad Request" |
+      | status | 400         |
+      | error  | Bad Request |
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without frames parameter
@@ -101,8 +101,8 @@ Feature: Video Controller
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                              |
-      | error  | "Invalid data on field = frames" |
+      | status | 400                            |
+      | error  | Invalid data on field = frames |
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without controlLoop parameter
@@ -121,8 +121,8 @@ Feature: Video Controller
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                                   |
-      | error  | "Invalid data on field = controlLoop" |
+      | status | 400                                 |
+      | error  | Invalid data on field = controlLoop |
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without start parameter
@@ -141,5 +141,5 @@ Feature: Video Controller
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400                      |
-      | error  | "For input string: \"\"" |
+      | status | 400                 |
+      | error  | For input string: \ |
