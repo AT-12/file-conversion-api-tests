@@ -16,12 +16,11 @@ public final class Environment {
     private static final String PATH = "gradle.properties";
     private static final Logger LOGGER = LogManager.getLogger(org.mozilla.javascript.tools.shell.Environment.class);
     private static Environment singleInstance;
-    private FileReader reader;
     private Properties property;
 
     private Environment() {
         try {
-            reader = new FileReader(PATH);
+            FileReader reader = new FileReader(PATH);
             property = new Properties();
             property.load(reader);
         } catch (FileNotFoundException e) {
@@ -35,6 +34,7 @@ public final class Environment {
 
     /**
      * get instance or create a new one.
+     *
      * @return PropertiesReader instance.
      */
     public static Environment getInstance() {
@@ -46,6 +46,7 @@ public final class Environment {
 
     /**
      * get the BaseUrl from the file.properties.
+     *
      * @return base url.
      */
     public String getBaseUrl() {
@@ -54,6 +55,7 @@ public final class Environment {
 
     /**
      * get the User from the file.properties.
+     *
      * @return User value.
      */
     public String getUsername() {
@@ -62,6 +64,7 @@ public final class Environment {
 
     /**
      * get the password from the file.properties.
+     *
      * @return Password value.
      */
     public String getPassword() {
@@ -70,26 +73,11 @@ public final class Environment {
 
     /**
      * get the audioTemplatesPath from the file.properties.
+     *
      * @return AudioTemplatesPath value.
      */
-    public String getAudioTemplatesPath() {
-        return getEnvProperty("audioTemplatesPath");
-    }
-
-    /**
-     * get the videoTemplatesPath from the file.properties.
-     * @return videoTemplatesPath value.
-     */
-    public String getVideoTemplatesPath() {
-        return getEnvProperty("videoTemplatesPath");
-    }
-
-    /**
-     * get the imageTemplatesPath from the file.properties.
-     * @return imageTemplatesPath value.
-     */
-    public String getImageTemplatesPath() {
-        return getEnvProperty("imageTemplatesPath");
+    public String getTemplatesPath() {
+        return getEnvProperty("templatesPath");
     }
 
     private String getEnvProperty(final String env) {

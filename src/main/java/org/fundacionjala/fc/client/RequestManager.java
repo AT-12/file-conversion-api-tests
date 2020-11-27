@@ -4,6 +4,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.entity.ContentType;
+import org.fundacionjala.fc.utils.AuthenticationUtils;
+
 import java.io.File;
 import java.util.Map;
 import static io.restassured.RestAssured.given;
@@ -25,11 +27,7 @@ public final class RequestManager {
      * @return a response object.
      */
     public static Response get(final String endpoint) {
-        Response response = given()
-                            .spec(reqSpec)
-                            .when()
-                            .get(endpoint);
-        return response;
+        return given().spec(reqSpec).when().get(endpoint);
     }
 
     /**
@@ -128,7 +126,7 @@ public final class RequestManager {
      *
      * @return a String with the path of file.
      */
-    private static void setLoggedReqSpec() {
+    public static void setLoggedReqSpec() {
         reqSpec = AuthenticationUtils.getLoggedReqSpec();
     }
 
@@ -137,7 +135,7 @@ public final class RequestManager {
      *
      * @return a String with the path of file.
      */
-    private static void setNotLoggedReqSpec() {
+    public static void setNotLoggedReqSpec() {
         reqSpec = AuthenticationUtils.getNotLoggedReqSpec();
     }
 }

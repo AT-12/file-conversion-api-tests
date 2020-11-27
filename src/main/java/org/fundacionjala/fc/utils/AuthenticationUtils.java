@@ -1,4 +1,4 @@
-package org.fundacionjala.fc.client;
+package org.fundacionjala.fc.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
