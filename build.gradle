@@ -29,7 +29,7 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.0'
     testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.13.6'
-    implementation 'io.qameta.allure:allure-jenkins:3.23.0'
+    //implementation 'io.qameta.allure:allure-jenkins:3.23.0'
 }
 
 checkstyle {
