@@ -16,9 +16,9 @@ public final class AuthenticationUtils {
     private static final String PATH = "login";
 
     /**
-     * Constructor for Authentication.
+     * Constructor for AuthenticationUtils.
      */
-    public AuthenticationUtils() {
+    private AuthenticationUtils() {
 
     }
 

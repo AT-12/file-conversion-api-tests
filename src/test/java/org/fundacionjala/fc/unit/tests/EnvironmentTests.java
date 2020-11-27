@@ -3,6 +3,7 @@ package org.fundacionjala.fc.unit.tests;
 import org.fundacionjala.fc.config.Environment;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 
 /**
@@ -47,32 +48,10 @@ public class EnvironmentTests {
      * Test get audioTemplatesPathTest value from gradle.properties.
      */
     @Test
-    public void getAudioTemplatesPathTest() throws IOException {
+    public void getTemplatesPathTest() throws IOException {
         Environment reader = Environment.getInstance();
-        String actual = reader.getAudioTemplatesPath();
-        String expected = "";
-        Assert.assertEquals(actual, expected);
-    }
-
-    /**
-     * Test get VideoTemplatesPathTest value from gradle.properties.
-     */
-    @Test
-    public void getVideoTemplatesPathTest() throws IOException {
-        Environment reader = Environment.getInstance();
-        String actual = reader.getVideoTemplatesPath();
-        String expected = "";
-        Assert.assertEquals(actual, expected);
-    }
-
-    /**
-     * Test get ImageTemplatesPathTest value from gradle.properties.
-     */
-    @Test
-    public void getImageTemplatesPathTest() throws IOException {
-        Environment reader = Environment.getInstance();
-        String actual = reader.getImageTemplatesPath();
-        String expected = "";
+        String actual = Environment.getInstance().getTemplatesPath();
+        String expected = "src/test/resources/templates/";
         Assert.assertEquals(actual, expected);
     }
 }
