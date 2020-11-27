@@ -87,4 +87,12 @@ public final class Environment {
         }
         return localProperty;
     }
+
+    /**
+     * get the TemplatesPath from the file.properties.
+     * @return TemplatesPath value.
+     */
+    public String getTemplatesPath() {
+        return getEnvProperty("templatesPath");
+    }
 }

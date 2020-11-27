@@ -3,7 +3,10 @@ package org.fundacionjala.fc.client;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.entity.ContentType;
+<<<<<<< HEAD
 import org.fundacionjala.fc.utils.AuthenticationUtils;
+=======
+>>>>>>> 1edac468ca4857447d22b8a512dc8e69a22c377a
 import org.fundacionjala.fc.config.Environment;
 
 import java.io.File;
@@ -27,7 +30,15 @@ public final class RequestManager {
      * @return a response object.
      */
     public static Response get(final String endpoint) {
+<<<<<<< HEAD
         return given().spec(reqSpec).when().get(endpoint);
+=======
+        Response response = given()
+                .spec(reqSpec)
+                .when()
+                .get(endpoint);
+        return response;
+>>>>>>> 1edac468ca4857447d22b8a512dc8e69a22c377a
     }
 
     /**
