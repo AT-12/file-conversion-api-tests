@@ -80,19 +80,20 @@ public final class Environment {
         return getEnvProperty("templatesPath");
     }
 
+    /**
+     * get the schemasPath from the file.properties.
+     *
+     * @return schemasPath value.
+     */
+    public String getSchemasPath() {
+        return getEnvProperty("schemasPath");
+    }
+
     private String getEnvProperty(final String env) {
         String localProperty = System.getProperty(env);
         if (localProperty == null) {
             return this.property.getProperty(env);
         }
         return localProperty;
-    }
-
-    /**
-     * get the TemplatesPath from the file.properties.
-     * @return TemplatesPath value.
-     */
-    public String getTemplatesPath() {
-        return getEnvProperty("templatesPath");
     }
 }
