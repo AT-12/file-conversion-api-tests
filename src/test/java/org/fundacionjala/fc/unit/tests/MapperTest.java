@@ -13,29 +13,29 @@ public class MapperTest extends TestCase {
      * Test get User value from gradle.properties.
      */
     @Test
-    public void mapperUtilityTest() {
+    public void endPointWithOneParamTest() {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("id","48943230192");
+        map.put("id", "48943230192");
         String originalEndPoint = "enpoint/{id}/otherendpoint";
         String expected = "enpoint/48943230192/otherendpoint";
-        Mapper mapper = new Mapper();
-        String actual = mapper.mapValue(originalEndPoint,map);
-        Assert.assertEquals(actual,expected);
+        Mapper mapper = Mapper.getInstance();
+        String actual = mapper.mapValue(originalEndPoint, map);
+        Assert.assertEquals(actual, expected);
     }
 
     /**
      * Test get User value from gradle.properties.
      */
     @Test
-    public void mapperWithTwoParamsTest() {
+    public void endPointWithTwoParamsTest() {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("id","48943230192");
-        map.put("ONE_ID","123456");
+        map.put("id", "48943230192");
+        map.put("ONE_ID", "123456");
         String originalEndPoint = "enpoint/{id}/otherendpoint/{ONE_ID}";
         String expected = "enpoint/48943230192/otherendpoint/123456";
-        Mapper mapper = new Mapper();
-        String actual = mapper.mapValue(originalEndPoint,map);
-        Assert.assertEquals(actual,expected);
+        Mapper mapper = Mapper.getInstance();
+        String actual = mapper.mapValue(originalEndPoint, map);
+        Assert.assertEquals(actual, expected);
     }
 
     /**
@@ -44,12 +44,12 @@ public class MapperTest extends TestCase {
     @Test
     public void endPointWithoutParamsTest() {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("id","48943230192");
-        map.put("ONE_ID","123456");
+        map.put("id", "48943230192");
+        map.put("ONE_ID", "123456");
         String originalEndPoint = "enpoint/fixed/otherendpoint";
         String expected = "enpoint/fixed/otherendpoint";
-        Mapper mapper = new Mapper();
-        String actual = mapper.mapValue(originalEndPoint,map);
-        Assert.assertEquals(actual,expected);
+        Mapper mapper = Mapper.getInstance();
+        String actual = mapper.mapValue(originalEndPoint, map);
+        Assert.assertEquals(actual, expected);
     }
 }

@@ -2,25 +2,36 @@ package org.fundacionjala.fc.utils;
 
 import java.util.Map;
 
-/**
- * Class Mapper
- */
-public class Mapper {
+public final class Mapper {
 
-    public Mapper() {
-
+    private static Mapper singleInstance;
+    /**
+     * Mapper constructor.
+     */
+    private Mapper() {
     }
 
+    /**
+     * get instance or create a new one.
+     * @return PropertiesReader instance.
+     */
+    public static Mapper getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new Mapper();
+        }
+        return singleInstance;
+    }
     /**
      *
      * @param value
      * @param storedValues
-     * @return
+     * @return The new endPoint with params replaced.
      */
-    public static String mapValue(String value, Map<String, String> storedValues) {
+    public static String mapValue(final String value, final Map<String, String> storedValues) {
+        String val = value;
         for (Map.Entry<String, String> entry : storedValues.entrySet()) {
-            value = value.replace("{"+entry.getKey()+"}",entry.getValue());
+            val = val.replace("{" + entry.getKey() + "}", entry.getValue());
         }
-        return value;
+        return val;
     }
 }
