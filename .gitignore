@@ -7,3 +7,5 @@
 /java/
 /logs/
 *.iml
+/openstack/vms/.vagrant/
+/openstack/env/

@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+ jenkins_server:
+  image: registry.jala.info/devops/jenkinsci/blueocean:1.23.2
+  container_name: jenkins_server
+  restart: always
+  ports:
+   - "8080:8080"
+   - "50000:50000"
+  volumes:
+   - jenkins_data:/var/jenkins_home
+  networks:
+   - ci_service
+volumes:
+ jenkins_data:
+  name: jenkins_data
+networks:
+ ci_service:
+  name: ci_service
+  driver: bridge
+  ipam:
+   config:
+    - subnet: 192.10.10.0/28
+  driver_opts:
+   com.docker.network.driver.mtu: 1400
