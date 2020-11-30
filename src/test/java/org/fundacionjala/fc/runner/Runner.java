@@ -12,8 +12,8 @@ import org.testng.annotations.DataProvider;
  */
 @CucumberOptions(
         plugin = {"pretty"},
-        glue = {"org.fundacionjala.fc"},
-        features = {"src/test/resources/features"}
+        features = {"src/test/resources/features"},
+        glue = {"org.fundacionjala.fc"}
 )
 public final class Runner extends AbstractTestNGCucumberTests {
 

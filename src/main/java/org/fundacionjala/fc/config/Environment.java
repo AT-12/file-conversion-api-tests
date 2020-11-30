@@ -16,8 +16,8 @@ public final class Environment {
     private static final String PATH = "gradle.properties";
     private static final Logger LOGGER = LogManager.getLogger(org.mozilla.javascript.tools.shell.Environment.class);
     private static Environment singleInstance;
-    private FileReader reader;
     private Properties property;
+    private FileReader reader;
 
     private Environment() {
         try {
@@ -30,11 +30,14 @@ public final class Environment {
         } catch (IOException e) {
             LOGGER.error("Error getting properties");
             LOGGER.error(e.getMessage());
+        } finally {
+            closeReader();
         }
     }
 
     /**
      * get instance or create a new one.
+     *
      * @return PropertiesReader instance.
      */
     public static Environment getInstance() {
@@ -46,6 +49,7 @@ public final class Environment {
 
     /**
      * get the BaseUrl from the file.properties.
+     *
      * @return base url.
      */
     public String getBaseUrl() {
@@ -54,6 +58,7 @@ public final class Environment {
 
     /**
      * get the User from the file.properties.
+     *
      * @return User value.
      */
     public String getUsername() {
@@ -62,6 +67,7 @@ public final class Environment {
 
     /**
      * get the password from the file.properties.
+     *
      * @return Password value.
      */
     public String getPassword() {
@@ -70,26 +76,20 @@ public final class Environment {
 
     /**
      * get the audioTemplatesPath from the file.properties.
+     *
      * @return AudioTemplatesPath value.
      */
-    public String getAudioTemplatesPath() {
-        return getEnvProperty("audioTemplatesPath");
+    public String getTemplatesPath() {
+        return getEnvProperty("templatesPath");
     }
 
     /**
-     * get the videoTemplatesPath from the file.properties.
-     * @return videoTemplatesPath value.
+     * get the schemasPath from the file.properties.
+     *
+     * @return schemasPath value.
      */
-    public String getVideoTemplatesPath() {
-        return getEnvProperty("videoTemplatesPath");
-    }
-
-    /**
-     * get the imageTemplatesPath from the file.properties.
-     * @return imageTemplatesPath value.
-     */
-    public String getImageTemplatesPath() {
-        return getEnvProperty("imageTemplatesPath");
+    public String getSchemasPath() {
+        return getEnvProperty("schemasPath");
     }
 
     /**
@@ -106,5 +106,13 @@ public final class Environment {
             return this.property.getProperty(env);
         }
         return localProperty;
+    }
+
+    private void closeReader() {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            LOGGER.error("Cannot close File Reader.");
+        }
     }
 }

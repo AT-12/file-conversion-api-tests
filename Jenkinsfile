@@ -54,13 +54,13 @@ pipeline {
         stage('Run BDD Tests') {
             steps {
                 echo 'Running BDD Tests...'
-                sh './gradlew executeBDDTests'
+                //sh './gradlew executeBDDTests'
             }
         post {
-                always {
-                    archiveArtifacts artifacts: 'build/reports/allure-report/*'
-                    archiveArtifacts artifacts: 'build/reports/allure-report/**/*'
-                }
+                //always {
+                //    archiveArtifacts artifacts: 'build/reports/allure-report/*'
+                //    archiveArtifacts artifacts: 'build/reports/allure-report/**/*'
+                //}
             }
         }
         stage('Re-Run BDD Tests') {

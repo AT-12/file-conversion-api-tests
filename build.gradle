@@ -84,7 +84,24 @@ task executeBDDTests(type: Test) {
     options {
         useDefaultListeners = false
         jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
         jvmArgs = ['-Dcucumber.filter.tags=' + filterTags]
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+        jvmArgs = ['-Dusername=' + username]
+        jvmArgs = ['-Dpassword=' + password]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+    finalizedBy 'allureReport'
+}
+
+task reExecuteBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-Dcucumber.features=@build/target/rerun.txt']
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
