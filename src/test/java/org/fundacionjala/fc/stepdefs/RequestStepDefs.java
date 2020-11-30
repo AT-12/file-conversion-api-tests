@@ -77,4 +77,19 @@ public class RequestStepDefs {
     public void validateResponseValues(final Map<String, String> expectedValues) {
         ResponseBodyValidator.validate(response, expectedValues);
     }
+
+    @When("I send a POST request to {string} with the following form data changing the exportFormat to MOV")
+    public void SendAPOSTRequestFormatToMOV(final String endpoint, final Map<String, String> formData) {
+        response = RequestManager.post(endpoint, formData);
+    }
+
+    @When("I send a POST request to {string} with the following form data changing the exportFormat to GIF")
+    public void SendAPOSTRequestFormatToGIF(final String endpoint, final Map<String, String> formData) {
+        response = RequestManager.post(endpoint, formData);
+    }
+
+    @When("I set the following form data")
+    public void SendAPOSTRequestFormatWrongCodec(final String endpoint, final Map<String, String> formData) {
+        response = RequestManager.post(endpoint, formData);
+    }
 }
