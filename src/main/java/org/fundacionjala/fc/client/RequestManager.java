@@ -71,11 +71,10 @@ public final class RequestManager {
      * @return a response object.
      */
     public static Response delete(final String endpoint) {
-        Response response = given()
+        return given()
                 .spec(reqSpec)
                 .when()
                 .delete(endpoint);
-        return response;
     }
 
     /**

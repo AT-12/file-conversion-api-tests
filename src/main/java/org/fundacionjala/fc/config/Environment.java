@@ -17,10 +17,11 @@ public final class Environment {
     private static final Logger LOGGER = LogManager.getLogger(org.mozilla.javascript.tools.shell.Environment.class);
     private static Environment singleInstance;
     private Properties property;
+    private FileReader reader;
 
     private Environment() {
         try {
-            FileReader reader = new FileReader(PATH);
+            reader = new FileReader(PATH);
             property = new Properties();
             property.load(reader);
         } catch (FileNotFoundException e) {
@@ -29,6 +30,8 @@ public final class Environment {
         } catch (IOException e) {
             LOGGER.error("Error getting properties");
             LOGGER.error(e.getMessage());
+        } finally {
+            closeReader();
         }
     }
 
@@ -95,5 +98,13 @@ public final class Environment {
             return this.property.getProperty(env);
         }
         return localProperty;
+    }
+
+    private void closeReader() {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            LOGGER.error("Cannot close File Reader.");
+        }
     }
 }
