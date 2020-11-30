@@ -92,6 +92,14 @@ public final class Environment {
         return getEnvProperty("schemasPath");
     }
 
+    /**
+     * get the cucumberThreadCount from the file.properties.
+     * @return cucumberThreadCount value.
+     */
+    public String getCucumberThreadCount() {
+        return getEnvProperty("cucumberThreadCount");
+    }
+
     private String getEnvProperty(final String env) {
         String localProperty = System.getProperty(env);
         if (localProperty == null) {
