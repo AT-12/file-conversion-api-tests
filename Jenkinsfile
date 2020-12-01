@@ -7,6 +7,7 @@ pipeline {
     environment {
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk'
         PATH      = '/usr/lib/jvm/java-11-openjdk/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+        FC_CREDENTIALS = credentials('credentials_fc')
     }
 
     stages {
@@ -53,24 +54,40 @@ pipeline {
         }
         stage('Run BDD Tests') {
             steps {
-                echo 'Running BDD Tests...'
-                //sh './gradlew executeBDDTests'
-            }
-        post {
-                //always {
-                //    archiveArtifacts artifacts: 'build/reports/allure-report/*'
-                //    archiveArtifacts artifacts: 'build/reports/allure-report/**/*'
-                //}
+                    echo 'Running BDD Tests...'
+                    sh './gradlew executeBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW -PbaseUrl=$BASE_URL'
+                }
+            post {
+                always {
+                    archiveArtifacts 'build/reports/allure-report/index.html'
+                    archiveArtifacts 'build/reports/**/*'
+                    archiveArtifacts 'build/allure-results/*'
+                }
             }
         }
         stage('Re-Run BDD Tests') {
             steps {
-                echo 'Empty for now! Coming soon.'
+                echo 'Running BDD Tests...'
+                sh './gradlew executeBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW -PbaseUrl=$BASE_URL'
+            }
+            post {
+                always {
+                    archiveArtifacts 'build/reports/allure-report/index.html'
+                    archiveArtifacts 'build/reports/**/*'
+                    archiveArtifacts 'build/allure-results/*'
+                }
             }
         }
         stage('Publish Report') {
             steps {
-                echo 'Empty for now! Coming soon.'
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'build/allure-results']]
+                    ])
+                }
             }
         }
     }

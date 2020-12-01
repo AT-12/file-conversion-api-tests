@@ -80,6 +80,7 @@ allure {
 }
 
 task executeBDDTests(type: Test) {
+    outputs.upToDateWhen { false }
     useTestNG()
     options {
         useDefaultListeners = false
@@ -89,6 +90,7 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
+        jvmArgs = ['-DbaseUrl=' + baseUrl]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
@@ -96,6 +98,7 @@ task executeBDDTests(type: Test) {
 }
 
 task reExecuteBDDTests(type: Test) {
+    outputs.upToDateWhen { false }
     useTestNG()
     options {
         useDefaultListeners = false
@@ -105,6 +108,7 @@ task reExecuteBDDTests(type: Test) {
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
+        jvmArgs = ['-DbaseUrl=' + baseUrl]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
