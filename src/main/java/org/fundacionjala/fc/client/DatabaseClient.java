@@ -57,8 +57,7 @@ public final class DatabaseClient {
      */
     public Map<String, String> runQuery(final String query) {
         Map<String, String> results = new HashMap<>();
-        try {
-            Statement stmt = dbConnection.createStatement();
+        try (Statement stmt = dbConnection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData metaData = rs.getMetaData();
             int columns = metaData.getColumnCount();
