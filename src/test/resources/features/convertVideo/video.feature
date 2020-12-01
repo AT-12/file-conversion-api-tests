@@ -24,7 +24,7 @@ Feature: Video Controller
 
   @functional
   Scenario: Verify that is possible to convert a video to MOV format
-    When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to MOV
+    When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .mov                             |
@@ -40,7 +40,7 @@ Feature: Video Controller
 
   @functional
   Scenario: Verify that is possible to convert a video to GIF format
-    When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to GIF
+    When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .gif                             |
@@ -60,7 +60,6 @@ Feature: Video Controller
   @negative
   Scenario: Verify that is not possible to convert a video using an invalid audio codec.
     When I send a POST request to "/convertVideo" with the following form data
-    When I set the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .mp4                             |
@@ -81,11 +80,10 @@ Feature: Video Controller
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
       | status | 400         |
-      | error  | Bad Request |
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without frames parameter
-    When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to GIF
+    When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .gif                             |
@@ -104,7 +102,7 @@ Feature: Video Controller
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without controlLoop parameter
-    When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to GIF
+    When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .gif                             |
@@ -123,7 +121,7 @@ Feature: Video Controller
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without start parameter
-    When I send a POST request to "/convertVideo" with the following form data changing the exportFormat to GIF
+    When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .gif                             |
