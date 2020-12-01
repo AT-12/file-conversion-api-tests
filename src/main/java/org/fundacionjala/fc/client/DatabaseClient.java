@@ -69,15 +69,16 @@ public final class DatabaseClient {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("Cannot connect to the database.");
+            LOGGER.error("Cannot execution query.");
             LOGGER.error(e.getMessage());
-        } finally {
-            closeConnection();
         }
         return results;
     }
 
-    private void closeConnection() {
+    /**
+     * Closes connection to dbConnection.
+     */
+    public static void closeConnection() {
         if (dbConnection != null) {
             try {
                 dbConnection.close();
