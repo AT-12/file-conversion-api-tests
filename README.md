@@ -7,13 +7,18 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=AT-12_file-conversion-api-tests&metric=alert_status)](https://sonarcloud.io/dashboard/index/AT-12_file-conversion-api-tests)
 
 # Description
-This is the AT-12's project, it was made on API Testing's subject. 
-The proposal of this project is to apply BDD using Gerking.  
+This is the AT-12's project, it was made on API Testing subject. 
+The proposal of this project is to implement Web API testing applying BDD with Gherkin.  
 # Environment setup
 Create an account on http://47.252.25.244:8080 and set the following variables on gradle.properties.
 - set baseUrl
 - set username
 - set password
+- set dbHost
+- set dbPort
+- set dbName
+- set dbUsername
+- set dbPassword
 
 # Execute tests
 In order to execute the tests there are the followings commands:
@@ -22,6 +27,7 @@ In order to execute the tests there are the followings commands:
 - gradle checkstyleMain
 - gradle test
 - gradle executeBDDTests
+- gradle reExecuteBDDTests
 # Endpoints tested
 The endpoints tested are:
 - GET /user/list
