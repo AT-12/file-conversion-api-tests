@@ -3,6 +3,9 @@ Feature: Create Users
   In order to create an account
   As a valid Converter customer
 
+  Background: Sets valid request
+    Given I set the request headers without authentication
+
   @functional @deleteUser
   Scenario: Verify that is possible to create a new account
     When I send a POST request to "/user/createUser" with the following form data
@@ -11,9 +14,10 @@ Feature: Create Users
       | lastName   | toro      |
       | password   | Secret123 |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "200" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/messageResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status  | 200                                                  |
       | message | Your account was created! Please, login to continue. |
 
@@ -25,9 +29,10 @@ Feature: Create Users
       | lastName   | toro      |
       | password   | Secret123 |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                              |
       | error  | The field username is mandatory. |
 
@@ -39,9 +44,10 @@ Feature: Create Users
       | lastName   | toro      |
       | password   | Secret123 |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                          |
       | error  | The field name is mandatory. |
 
@@ -53,9 +59,10 @@ Feature: Create Users
       | lastName   |           |
       | password   | Secret123 |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                              |
       | error  | The field lastName is mandatory. |
 
@@ -67,9 +74,10 @@ Feature: Create Users
       | lastName   |           |
       | password   | Secret123 |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                              |
       | error  | The field username is mandatory. |
 
@@ -81,9 +89,10 @@ Feature: Create Users
       | lastName   | toro      |
       | password   |           |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                                               |
       | error  | Password and Password Confirmation are different. |
 
@@ -95,17 +104,9 @@ Feature: Create Users
       | lastName   | toro      |
       | password   |           |
       | rePassword | Secret123 |
+    And I store the "username" value from request to clean workspace
     Then I validate the response has the "400" status code
-    And I validate that the response body should match with "users/createUsers.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/errorResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status | 400                                                            |
       | error  | Password must have at least one number and one capital letter. |
-
-  @functional @createUser @deleteUser
-  Scenario: Verify that is possible to logout user
-    Given I am logged in the Converter Application
-    When I send a GET request to "/logout"
-    Then I validate the response has the "302" status code
-    And I validate that the response body should match with "user/logout.json" JSON schema
-    And I validate that the response contains the following values
-      | status | 302 |

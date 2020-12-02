@@ -8,14 +8,14 @@ Feature: Update Users
 
   @functional @createUser @deleteUser
   Scenario: Verify that is possible to update the user information
-    When I send a PUT request to "/user/edit/{id}" with the following form data
+    When I send a PUT request to "/user/edit/{id}" with following form data
       | username | laura1    |
       | name     | laura     |
       | lastName | montano   |
       | password | Secret123 |
     Then I validate the response has the "200" status code
-    And I validate that the response body should match with "users/updateUser.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response body should match with "common/messageResponse.json" JSON schema
+    And I validate that the response contain the following values
       | status  | 200         |
       | message | User edited |
 
@@ -28,6 +28,6 @@ Feature: Update Users
       | password | Secret123 |
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
-    And I validate that the response contains the following values
+    And I validate that the response contain the following values
       | status | 400                                  |
       | error  | The user with Id: {id}does not exist |
