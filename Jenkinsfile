@@ -59,7 +59,7 @@ pipeline {
                     echo 'Running BDD Tests...'
                     sh './gradlew executeBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW ' +
                     '-PbaseUrl=$BASE_URL -PdbUsername=$BD_FC_CREDENTIALS_USR -PdbPassword=$BD_FC_CREDENTIALS_PSW ' +
-                    '-PdbHost=DB_HOST -PdbPort=DB_PORT -PdbName=$DB_NAME'
+                    '-PdbHost=$DB_HOST -PdbPort=$DB_PORT -PdbName=$DB_NAME'
                 }
             }
             post {
@@ -76,7 +76,7 @@ pipeline {
                     echo 'Running BDD Tests...'
                     sh './gradlew reExecuteBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW ' +
                     '-PbaseUrl=$BASE_URL -PdbUsername=$BD_FC_CREDENTIALS_USR -PdbPassword=$BD_FC_CREDENTIALS_PSW ' +
-                    '-PdbHost=DB_HOST -PdbPort=DB_PORT -PdbName=$DB_NAME'
+                    '-PdbHost=$DB_HOST -PdbPort=$DB_PORT -PdbName=$DB_NAME'
                 }
             }
             post {
