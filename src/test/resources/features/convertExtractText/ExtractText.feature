@@ -19,7 +19,7 @@ Feature: Extract text from image
       | status  | 200                                                          |
       | message | storage/convertedFiles//f31e75933983501423ca55e176ca163e.zip |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible to extract text with an invalid language
     When I send a POST request to "/convertExtractText" with the following form data
       | file         | @"image/text.png"                |
@@ -29,8 +29,8 @@ Feature: Extract text from image
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status  | 400                         |
-      | error   | Error while extracting text |
+      | status  | 400                    |
+      | error   | Failed in the language |
 
   @negative
   Scenario: Verify that is not possible to extract text with an invalid md5

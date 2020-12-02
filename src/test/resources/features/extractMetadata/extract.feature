@@ -45,7 +45,7 @@ Feature: Extract Metadata
     And I validate that the response contain the following values
       | status | 200 |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible to extract metadata from a file using an invalid export format
     When I send a POST request to "/extractMetadata" with the following form data
       | file         | @"audio/audio.mp3"               |

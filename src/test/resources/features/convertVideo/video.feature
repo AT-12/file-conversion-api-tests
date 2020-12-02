@@ -38,7 +38,7 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status | 200 |
 
-  @functional
+  @skipTest
   Scenario: Verify that is possible to convert a video to GIF format
     When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
@@ -73,13 +73,13 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status | 400 |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible to convert a video without configuration parameters.
     When I send a POST request to "/convertVideo" with the empty form data
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
-      | status | 400         |
+      | status | 400  |
 
   @negative
   Scenario: Verify that is not possible to convert a video to GIF format without frames parameter
@@ -87,7 +87,6 @@ Feature: Video Controller
       | file             | @"video/video.mp4"               |
       | md5              | d9061d3da8601932e98f79ec8ba1c877 |
       | exportFormat     | .gif                             |
-      | frames           |                                  |
       | controlLoop      | 0                                |
       | duration         | 0:00:30                          |
       | start            | 00:00:05                         |
@@ -100,7 +99,7 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status | 400 |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible to convert a video to GIF format without controlLoop parameter
     When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
@@ -119,7 +118,7 @@ Feature: Video Controller
     And I validate that the response contain the following values
       | status | 400 |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible to convert a video to GIF format without start parameter
     When I send a POST request to "/convertVideo" with the following form data
       | file             | @"video/video.mp4"               |
@@ -128,7 +127,6 @@ Feature: Video Controller
       | frames           | 24                               |
       | controlLoop      | 0                                |
       | duration         | 0:00:30                          |
-      | start            |                                  |
       | secondsToOutput  | 15                               |
       | name             | videoDemo                        |
       | extractThumbnail | true                             |

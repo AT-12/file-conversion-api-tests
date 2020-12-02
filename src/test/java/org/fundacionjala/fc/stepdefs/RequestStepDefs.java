@@ -8,7 +8,6 @@ import org.fundacionjala.fc.client.RequestManager;
 import org.fundacionjala.fc.utils.JsonSchemaValidator;
 import org.fundacionjala.fc.utils.ResponseBodyValidator;
 import org.testng.Assert;
-
 import java.util.HashMap;
 import java.util.Map;
 
