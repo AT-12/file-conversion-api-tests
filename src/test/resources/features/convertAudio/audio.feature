@@ -96,7 +96,7 @@ Feature: Audio Converter
       | status | 400                 |
       | error  | Invalid audio codec |
 
-  @negative
+  @skipTest
   Scenario: Verify that is not possible convert audio when an invalid md5 is used
     When I send a POST request to "/convertAudio" with the following form data
       | file            | @"audio/audio.mp3" |
