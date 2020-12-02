@@ -53,4 +53,22 @@ public class Context {
     public String getValueData(final String key) {
         return this.data.getOrDefault(key, "");
     }
+
+    /**
+     * Gets data map.
+     *
+     * @return data map
+     */
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    /**
+     * Sets data map.
+     *
+     * @param dataToSet
+     */
+    public void setData(final Map<String, String> dataToSet) {
+        this.data = dataToSet;
+    }
 }

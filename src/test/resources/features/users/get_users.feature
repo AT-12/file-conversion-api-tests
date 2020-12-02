@@ -6,7 +6,7 @@ Feature: Get information of Users
   Background: Sets authentication
     Given I set valid authentication headers
 
-  @functional @createUsers @deleteUsers
+  @functional
   Scenario: Verify that is possible to retrieve all users as list 
     When I send a GET request to "user/list"
     Then I validate the response has the "200" status code

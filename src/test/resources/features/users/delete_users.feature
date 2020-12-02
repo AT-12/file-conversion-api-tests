@@ -6,7 +6,7 @@ Feature: Delete Users
   Background: Sets authentication
     Given I set valid authentication headers
 
-  @functional @createUser
+  @functional @createUser @deleteUser
  Scenario: Verify that is possible to delete an user
     When I send a DELETE request to "/user/delete/{id}"
     Then I validate the response has the "200" status code
@@ -17,7 +17,7 @@ Feature: Delete Users
 
   @negative @createUser @deleteUser
   Scenario: Verify that is not possible to delete an user using an invalid id
-    When I send a DELETE request to "/user/delete/{id}"
+    When I send a DELETE request to "/user/delete/-1"
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values

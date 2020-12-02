@@ -5,10 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import org.fundacionjala.fc.client.DatabaseClient;
 import org.fundacionjala.fc.client.RequestManager;
 import org.fundacionjala.fc.context.Context;
 import org.fundacionjala.fc.utils.JsonSchemaValidator;
+import org.fundacionjala.fc.utils.Mapper;
 import org.fundacionjala.fc.utils.ResponseBodyValidator;
 import org.testng.Assert;
 
@@ -34,18 +34,12 @@ public class RequestStepDefs {
     /**
      * Sets valid authentication headers.
      */
+    @Given("I am logged in the Converter Application")
     @Given("I set valid authentication headers")
     public void setValidAuthenticationHeaders() {
         RequestManager.setLoggedReqSpec();
     }
 
-    /**
-     * Login the Converter Application.
-     */
-    @Given("I am logged in the Converter Application")
-    public void loginTheConverterApplication() {
-        RequestManager.setLoggedReqSpec();
-    }
     /**
      * Sets the headers without authentication.
      */
@@ -93,12 +87,8 @@ public class RequestStepDefs {
      */
     @When("I send a PUT request to {string} with following form data")
     public void sendPUTRequest(final String endpoint, final Map<String, String> formData) {
-        /*context.saveRequestData(formData);
-        context.getRequestValue("username");
-        String username = context.getValueData("usernameToDelete");*/
-        String query = "SELECT LAST_INSERT_ID()";
-        DatabaseClient.getInstance().runQuery(query);
-        response = RequestManager.put(endpoint, formData);
+        String endpointMapped = Mapper.mapValue(endpoint, context.getData());
+        response = RequestManager.put(endpointMapped, formData);
     }
 
     /**
@@ -108,7 +98,8 @@ public class RequestStepDefs {
      */
     @When("I send a DELETE request to {string}")
     public void sendDELETERequest(final String endpoint) {
-        response = RequestManager.delete(endpoint);
+        String endpointMapped = Mapper.mapValue(endpoint, context.getData());
+        response = RequestManager.delete(endpointMapped);
     }
 
     /**

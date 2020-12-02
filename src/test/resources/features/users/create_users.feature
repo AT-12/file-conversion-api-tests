@@ -21,22 +21,16 @@ Feature: Create Users
       | status  | 200                                                  |
       | message | Your account was created! Please, login to continue. |
 
-  @negative @deleteUser
-  Scenario: Verify that is not possible to create a new account without username
-    When I send a POST request to "/user/createUser" with the following form data
-      | username   |           |
-      | name       | laura     |
-      | lastName   | toro      |
-      | password   | Secret123 |
-      | rePassword | Secret123 |
-    And I store the "username" value from request to clean workspace
+  @skipTest @deleteUser
+  Scenario: Verify that is not possible to create a new account with empty form data
+    When I send a POST request to "/user/createUser" with the empty form data
     Then I validate the response has the "400" status code
     And I validate that the response body should match with "common/errorResponse.json" JSON schema
     And I validate that the response contain the following values
       | status | 400                              |
       | error  | The field username is mandatory. |
 
-  @negative @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is not possible to create a new account without name
     When I send a POST request to "/user/createUser" with the following form data
       | username   | laura     |
@@ -51,7 +45,7 @@ Feature: Create Users
       | status | 400                          |
       | error  | The field name is mandatory. |
 
-  @negative @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is not possible to create a new account without lastName
     When I send a POST request to "/user/createUser" with the following form data
       | username   | laura     |
@@ -66,7 +60,7 @@ Feature: Create Users
       | status | 400                              |
       | error  | The field lastName is mandatory. |
 
-  @negative @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is not possible to create a new account without username, name and lastName
     When I send a POST request to "/user/createUser" with the following form data
       | username   |           |
@@ -81,7 +75,7 @@ Feature: Create Users
       | status | 400                              |
       | error  | The field username is mandatory. |
 
-  @negative @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is not possible to create a new account with password confirmation different from password
     When I send a POST request to "/user/createUser" with the following form data
       | username   | laura     |
@@ -96,7 +90,7 @@ Feature: Create Users
       | status | 400                                               |
       | error  | Password and Password Confirmation are different. |
 
-  @negative @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is not possible to create a new account with password with less than eight characters and without one capital letter and at least one number
     When I send a POST request to "/user/createUser" with the following form data
       | username   | laura     |

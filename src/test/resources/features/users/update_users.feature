@@ -6,7 +6,7 @@ Feature: Update Users
   Background: Sets authentication
     Given I set valid authentication headers
 
-  @functional @createUser @deleteUser
+  @skipTest @createUser @deleteUser
   Scenario: Verify that is possible to update the user information
     When I send a PUT request to "/user/edit/{id}" with following form data
       | username | laura1    |
@@ -19,9 +19,9 @@ Feature: Update Users
       | status  | 200         |
       | message | User edited |
 
-  @negative @createUser @deleteUser
+  @skipTest @createUser @deleteUser
   Scenario:  Verify that is not possible to update the user information using an invalid id
-    When I send a PUT request to "/user/edit/{id}" with following form data
+    When I send a PUT request to "/user/edit/-1" with following form data
       | username | laura1    |
       | name     | laura     |
       | lastName | montano   |
