@@ -100,6 +100,54 @@ public final class Environment {
         return getEnvProperty("cucumberThreadCount");
     }
 
+    /**
+     * Get mysql database host.
+     * @return database host value.
+     */
+    public String getDbHost() {
+        return getEnvProperty("dbHost");
+    }
+
+    /**
+     * Get mysql database port.
+     * @return database port value.
+     */
+    public String getDbPort() {
+        return getEnvProperty("dbPort");
+    }
+
+    /**
+     * Get mysql database name.
+     * @return database name value.
+     */
+    public String getDbName() {
+        return getEnvProperty("dbName");
+    }
+
+    /**
+     * Get mysql database username.
+     * @return database username.
+     */
+    public String getDbUserName() {
+        return getEnvProperty("dbUsername");
+    }
+
+    /**
+     * Get mysql database password.
+     * @return database password
+     */
+    public String getDbPassword() {
+        return getEnvProperty("dbPassword");
+    }
+
+    /**
+     * Get mysql database url connection.
+     * @return database url connection value.
+     */
+    public String getDbMysqlUrlConection() {
+        return String.format("jdbc:mariadb://%s/%s", getDbHost(), getDbName());
+    }
+
     private String getEnvProperty(final String env) {
         String localProperty = System.getProperty(env);
         if (localProperty == null) {
