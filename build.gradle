@@ -82,6 +82,7 @@ allure {
 
 task executeBDDTests(type: Test) {
     useTestNG()
+    exclude 'org/fundacionjala/fc/unit/tests/**'
     options {
         useDefaultListeners = false
         jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
@@ -90,6 +91,7 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
+        jvmArgs = ['-DbaseUrl=' + baseUrl]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
@@ -98,6 +100,7 @@ task executeBDDTests(type: Test) {
 
 task reExecuteBDDTests(type: Test) {
     useTestNG()
+    exclude 'org/fundacionjala/fc/unit/tests/**'
     options {
         useDefaultListeners = false
         jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
@@ -106,6 +109,7 @@ task reExecuteBDDTests(type: Test) {
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
+        jvmArgs = ['-DbaseUrl=' + baseUrl]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
