@@ -93,6 +93,11 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
         jvmArgs = ['-DbaseUrl=' + baseUrl]
+        jvmArgs = ['-DdbHost=' + dbHost]
+        jvmArgs = ['-DdbPort=' + dbPort]
+        jvmArgs = ['-DdbName=' + dbName]
+        jvmArgs = ['-DdbUsername=' + dbUsername]
+        jvmArgs = ['-DdbPassword=' + dbPassword]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
@@ -112,6 +117,11 @@ task reExecuteBDDTests(type: Test) {
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
         jvmArgs = ['-DbaseUrl=' + baseUrl]
+        jvmArgs = ['-DdbHost=' + dbHost]
+        jvmArgs = ['-DdbPort=' + dbPort]
+        jvmArgs = ['-DdbName=' + dbName]
+        jvmArgs = ['-DdbUsername=' + dbUsername]
+        jvmArgs = ['-DdbPassword=' + dbPassword]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
