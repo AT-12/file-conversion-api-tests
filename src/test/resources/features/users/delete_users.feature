@@ -15,7 +15,7 @@ Feature: Delete Users
       | status  | 200          |
       | message | User deleted |
 
-  @negative @createUser @deleteUser
+  @skipTest @createUser @deleteUser
   Scenario: Verify that is not possible to delete an user using an invalid id
     When I send a DELETE request to "/user/delete/-1"
     Then I validate the response has the "400" status code
