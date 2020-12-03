@@ -81,6 +81,7 @@ allure {
 }
 
 task executeBDDTests(type: Test) {
+    outputs.upToDateWhen { false }
     useTestNG()
     exclude 'org/fundacionjala/fc/unit/tests/**'
     options {
@@ -92,6 +93,11 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
         jvmArgs = ['-DbaseUrl=' + baseUrl]
+        jvmArgs = ['-DdbHost=' + dbHost]
+        jvmArgs = ['-DdbPort=' + dbPort]
+        jvmArgs = ['-DdbName=' + dbName]
+        jvmArgs = ['-DdbUsername=' + dbUsername]
+        jvmArgs = ['-DdbPassword=' + dbPassword]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false
@@ -99,6 +105,7 @@ task executeBDDTests(type: Test) {
 }
 
 task reExecuteBDDTests(type: Test) {
+    outputs.upToDateWhen { false }
     useTestNG()
     exclude 'org/fundacionjala/fc/unit/tests/**'
     options {
@@ -110,6 +117,11 @@ task reExecuteBDDTests(type: Test) {
         jvmArgs = ['-Dusername=' + username]
         jvmArgs = ['-Dpassword=' + password]
         jvmArgs = ['-DbaseUrl=' + baseUrl]
+        jvmArgs = ['-DdbHost=' + dbHost]
+        jvmArgs = ['-DdbPort=' + dbPort]
+        jvmArgs = ['-DdbName=' + dbName]
+        jvmArgs = ['-DdbUsername=' + dbUsername]
+        jvmArgs = ['-DdbPassword=' + dbPassword]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false

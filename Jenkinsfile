@@ -7,6 +7,8 @@ pipeline {
     environment {
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk'
         PATH      = '/usr/lib/jvm/java-11-openjdk/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+        FC_CREDENTIALS = credentials('credentials_fc')
+        BD_FC_CREDENTIALS = credentials('Credential-fc-db')
     }
 
     stages {
@@ -53,24 +55,49 @@ pipeline {
         }
         stage('Run BDD Tests') {
             steps {
-                echo 'Running BDD Tests...'
-                //sh './gradlew executeBDDTests'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    echo 'Running BDD Tests...'
+                    sh './gradlew executeBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW ' +
+                    '-PbaseUrl=$BASE_URL -PdbUsername=$BD_FC_CREDENTIALS_USR -PdbPassword=$BD_FC_CREDENTIALS_PSW ' +
+                    '-PdbHost=$DB_HOST -PdbPort=$DB_PORT -PdbName=$DB_NAME'
+                }
             }
-        post {
-                //always {
-                //    archiveArtifacts artifacts: 'build/reports/allure-report/*'
-                //    archiveArtifacts artifacts: 'build/reports/allure-report/**/*'
-                //}
+            post {
+                always {
+                    archiveArtifacts 'build/reports/allure-report/index.html'
+                    archiveArtifacts 'build/reports/allure-report/**/*'
+                    archiveArtifacts 'build/allure-results/*'
+                }
             }
         }
         stage('Re-Run BDD Tests') {
             steps {
-                echo 'Empty for now! Coming soon.'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    echo 'Running BDD Tests...'
+                    sh './gradlew reExecuteBDDTests -Pusername=$FC_CREDENTIALS_USR -Ppassword=$FC_CREDENTIALS_PSW ' +
+                    '-PbaseUrl=$BASE_URL -PdbUsername=$BD_FC_CREDENTIALS_USR -PdbPassword=$BD_FC_CREDENTIALS_PSW ' +
+                    '-PdbHost=$DB_HOST -PdbPort=$DB_PORT -PdbName=$DB_NAME'
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts 'build/reports/allure-report/index.html'
+                    archiveArtifacts 'build/reports/allure-report/**/*'
+                    archiveArtifacts 'build/allure-results/*'
+                }
             }
         }
         stage('Publish Report') {
             steps {
                 echo 'Empty for now! Coming soon.'
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'build/allure-results']]
+                    ])
+                }
             }
         }
     }
