@@ -6,7 +6,7 @@ Feature: Create Users
   Background: Sets valid request
     Given I set the request headers without authentication
 
-  @functional @deleteUser
+  @skipTest @deleteUser
   Scenario: Verify that is possible to create a new account
     When I send a POST request to "/user/createUser" with the following form data
       | username   | laura     |
