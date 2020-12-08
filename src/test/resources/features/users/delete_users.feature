@@ -6,7 +6,7 @@ Feature: Delete Users
   Background: Sets authentication
     Given I set valid authentication headers
 
-  @functional @createUser @deleteUser
+  @skipTest @createUser @deleteUser
  Scenario: Verify that is possible to delete an user
     When I send a DELETE request to "/user/delete/{id}"
     Then I validate the response has the "200" status code
